@@ -4,11 +4,17 @@ import { FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { HistoryComponent } from './history/history.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { VideoViewComponent } from './video-view/video-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    HistoryComponent,
+    BookmarksComponent,
+    VideoViewComponent
   ],
   imports: [
     BrowserModule,
