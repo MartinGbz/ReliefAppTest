@@ -1,12 +1,3 @@
 <ul class="list-group" id="list">
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-  <li class="list-group-item">hi</li>
-
-
+  <li class="list-group-item" *ngFor="let h of history" [textContent]="h"></li>
 </ul>

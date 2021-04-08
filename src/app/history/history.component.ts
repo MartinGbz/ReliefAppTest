@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Serv1Service} from '../services/serv1.service';
 
 @Component({
   selector: 'app-history',
@@ -7,16 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
   htmlToAdd;
+  history = [];
 
-  constructor() { }
-  // tslint:disable-next-line:typedef
-  addList(eltList){
-    console.log('SEARCH');
-
-    const list = document.getElementById('list');
-    const li = document.createElement('li');
-    li.innerText = 'TEST';
-    this.htmlToAdd = li;
+  constructor(private serv: Serv1Service) {
+    this.history = serv.history;
   }
 
   ngOnInit(): void {
