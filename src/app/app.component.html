@@ -4,18 +4,18 @@
     </div>
     <div class="col-md-4" style="background-color: bisque; height: 200px">
       <div class="row align-content-center" style="height: 200px">
-        <app-search-bar placeholder="URL" (myEvent)="video.setUrl('search')"></app-search-bar>
+        <app-search-bar #barComponent placeholder="URL" (deselectItemsEvent)="historyComponent.deSelectAllItems()" (myEvent)="video.setUrl('search')"></app-search-bar>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4" style="background-color: cadetblue">
       <!--History-->
-      <app-history (myEvent)="video.setUrl('select')"></app-history>
+      <app-history #historyComponent (myEvent)="video.setUrl('select')"></app-history>
     </div>
     <div class="col-md-4" style="background-color: coral">
       <!--Video player-->
-      <app-video-view #video></app-video-view>
+      <app-video-view #video (urlNotFoundEvent)="barComponent.urlNotFound()"></app-video-view>
     </div>
     <div class="col-md-4" style="background-color: royalblue">
       <!--Bookmark-->

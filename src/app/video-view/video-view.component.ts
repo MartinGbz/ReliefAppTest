@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
 
 @Component({
@@ -9,38 +9,41 @@ import {Serv1Service} from '../services/serv1.service';
 export class VideoViewComponent implements OnInit {
   URLvideo;
 
+  @Output() urlNotFoundEvent: EventEmitter<any> = new EventEmitter();
+
   constructor(private serv: Serv1Service) {
 
   }
 
+  /**
+   * Edit url attribut of iframe
+   * @param from : search=>come from search button / select=>come from item selection
+   */
   setUrl(from): void{
     console.log('SET URL');
     console.log('this.serv.servSearchValue = ' + this.serv.servSearchValue);
+    console.log('this.serv.selectedItem = ' + this.serv.selectedItem);
     // this.URLvideo = this.serv.servSearchValue;
 
     if (from === 'search' && this.serv.servSearchValue != null){
-      document.getElementById('video').setAttribute('src', this.getEmbedURL(this.serv.servSearchValue));
+      if (this.serv.getEmbedURL(this.serv.servSearchValue) != null) {
+        document.getElementById('video').setAttribute('src', this.serv.getEmbedURL(this.serv.servSearchValue));
+      }
+      else{
+        // remove text
+        // affichage erreur lien
+        this.urlNotFoundEvent.emit(null); // setLabel() (in SearchBar)
+      }
     }
-    if (from === 'select' && this.serv.selectedItem != null){
-      document.getElementById('video').setAttribute('src', this.getEmbedURL(this.serv.selectedItem));
+    // if we select the same item we don't browse the video again
+    if (from === 'select' && this.serv.selectedItem !== this.serv.oldSlectedItem){
+      document.getElementById('video').setAttribute('src', this.serv.getEmbedURL(this.serv.selectedItem));
     }
 
     console.log(document.getElementById('video'));
   }
 
-  getID(url): string {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
 
-    return (match && match[2].length === 11)
-      ? match[2]
-      : null;
-  }
-
-  getEmbedURL(url): string {
-    const id = this.getID(url);
-    return 'https://www.youtube.com/embed/' + id;
-  }
 
   ngOnInit(): void {
   }

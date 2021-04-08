@@ -19,7 +19,7 @@ export class HistoryComponent implements OnInit {
     if (event.target.classList.contains('active')) {
       // remove active selected
       // event.target.classList.remove('active');
-      this.serv.selectedItem = null;
+      this.serv.oldSlectedItem = this.serv.selectedItem;
     }
     else {
       // reset selection
@@ -30,6 +30,7 @@ export class HistoryComponent implements OnInit {
       }
       // add active selected
       event.target.classList.add('active');
+      this.serv.oldSlectedItem = this.serv.selectedItem;
       this.serv.selectedItem = event.target.textContent;
     }
 
@@ -37,6 +38,17 @@ export class HistoryComponent implements OnInit {
     // this.selectedItem = event.target.textContent;
 
     this.myEvent.emit(null);
+  }
+
+  deSelectAllItems(): void{
+    const list = document.getElementById('list');
+    if (list.hasChildNodes()) {
+      for (let i = 0; i < list.childElementCount; i++){
+        list.children[i].classList.remove('active');
+      }
+    }
+    this.serv.oldSlectedItem = this.serv.selectedItem;
+    this.serv.selectedItem = null;
   }
 
   ngOnInit(): void {

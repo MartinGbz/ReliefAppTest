@@ -1,5 +1,7 @@
-<ul class="list-group" id="list">
-  <li class="list-group-item list-group-item-action" *ngFor="let h of history" [textContent]="h" (click)="onItem($event)"></li>
-</ul>
+<label>History</label>
+
+<div class="list-group" id="list">
+  <button class="list-group-item list-group-item-action" *ngFor="let h of history" [textContent]="h" (click)="onItem($event)"></button>
+</div>
 
 <button class="btn btn-warning" (click)="onBtn()">test item selected</button>

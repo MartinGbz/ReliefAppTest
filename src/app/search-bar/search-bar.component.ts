@@ -14,6 +14,8 @@ export class SearchBarComponent implements OnInit {
   // @Output() myEvent = new events.EventEmitter(); // enable launch of another component function
   @Output() myEvent: EventEmitter<any> = new EventEmitter();
 
+  @Output() deselectItemsEvent: EventEmitter<any> = new EventEmitter();
+
   public searchContent;
 
   constructor(private serv: Serv1Service) {
@@ -22,7 +24,8 @@ export class SearchBarComponent implements OnInit {
 
   onSearch(): void{
     console.log('searchContent : ' + this.searchContent);
-    if (!( (this.searchContent == null) || (this.searchContent === ''))){
+    // 1st and 2nd condition are maybe useless
+    if (!( (this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))){
       // current video
       this.serv.servSearchValue = this.searchContent;
       // add curent video in history
@@ -32,8 +35,30 @@ export class SearchBarComponent implements OnInit {
       for (const entry of this.serv.history) {
         console.log(entry);
       }
+      this.setLabel('');
     }
-    this.myEvent.emit(null); // enable launch of another component function
+    else{
+      this.serv.servSearchValue = null;
+      this.urlNotFound();
+    }
+    this.myEvent.emit(null); // setUrl() (in Video)
+    this.deselectItemsEvent.emit(null); // deselectItemAll() (in History)
+  }
+
+  // call by video
+  urlNotFound(): void{
+    this.setLabel('URL Not found');
+    this.resetInput();
+  }
+
+
+  setLabel(msg): void{
+    document.getElementById('label').innerText = msg;
+  }
+
+  resetInput(): void{
+    console.log('resetInput()');
+    this.searchContent = '';
   }
 
   getTextSearchBox(): void {
