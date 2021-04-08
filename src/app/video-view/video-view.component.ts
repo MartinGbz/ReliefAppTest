@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
 
 @Component({
@@ -8,8 +8,6 @@ import {Serv1Service} from '../services/serv1.service';
 })
 export class VideoViewComponent implements OnInit {
   URLvideo;
-
-  @Output() urlNotFoundEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(private serv: Serv1Service) {
 
@@ -28,11 +26,6 @@ export class VideoViewComponent implements OnInit {
     if (from === 'search' && this.serv.servSearchValue != null){
       if (this.serv.getEmbedURL(this.serv.servSearchValue) != null) {
         document.getElementById('video').setAttribute('src', this.serv.getEmbedURL(this.serv.servSearchValue));
-      }
-      else{
-        // remove text
-        // affichage erreur lien
-        this.urlNotFoundEvent.emit(null); // setLabel() (in SearchBar)
       }
     }
     // if we select the same item we don't browse the video again
