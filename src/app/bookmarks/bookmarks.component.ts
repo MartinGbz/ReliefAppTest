@@ -18,6 +18,8 @@ export class BookmarksComponent implements OnInit {
 
   onAddBookMarks(): void{
     this.serv.bookmarks.push(this.serv.currentVideoUrl);
+    // update bookmarks local storage
+    localStorage.setItem('bookmarks', JSON.stringify(this.serv.bookmarks));
     this.isHiddenLabel = false;
     setTimeout(
       () => {

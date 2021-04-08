@@ -28,6 +28,8 @@ export class SearchBarComponent implements OnInit {
       this.serv.currentVideoUrl = this.searchContent;
       // add current video to history
       this.serv.history.push(this.searchContent);
+      // update history local storage
+      localStorage.setItem('history', JSON.stringify(this.serv.history));
       // display array of history
       console.log('History list :');
       for (const entry of this.serv.history) {
