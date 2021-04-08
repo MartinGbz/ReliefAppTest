@@ -11,20 +11,21 @@ export class SearchBarComponent implements OnInit {
   public searchContent;
 
   constructor(private serv: Serv1Service) {
-
+    this.searchContent = null;
   }
 
   onSearch(): void{
-    console.log('inputSearch : ' + (document.getElementById('inputSearch') as HTMLInputElement));
     console.log('searchContent : ' + this.searchContent);
-    // current video
-    this.serv.servSearchValue = this.searchContent;
-    // add curent video in history
-    this.serv.history.push(this.searchContent);
-    // display array of history
-    console.log('liste de l\'historique');
-    for (const entry of this.serv.history) {
-      console.log(entry);
+    if (!( (this.searchContent == null) || (this.searchContent === ''))){
+      // current video
+      this.serv.servSearchValue = this.searchContent;
+      // add curent video in history
+      this.serv.history.push(this.searchContent);
+      // display array of history
+      console.log('History list :');
+      for (const entry of this.serv.history) {
+        console.log(entry);
+      }
     }
   }
 
