@@ -7,8 +7,7 @@ import {Serv1Service} from '../services/serv1.service';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  @Output() myEvent: EventEmitter<any> = new EventEmitter();
-  htmlToAdd;
+  @Output() setUrlEvent: EventEmitter<any> = new EventEmitter();
   history = [];
 
   constructor(private serv: Serv1Service) {
@@ -19,7 +18,7 @@ export class HistoryComponent implements OnInit {
     if (event.target.classList.contains('active')) {
       // remove active selected
       // event.target.classList.remove('active');
-      this.serv.oldSlectedItem = this.serv.selectedItem;
+      this.serv.oldSelectedUrl = this.serv.selectedUrl;
     }
     else {
       // reset selection
@@ -30,25 +29,28 @@ export class HistoryComponent implements OnInit {
       }
       // add active selected
       event.target.classList.add('active');
-      this.serv.oldSlectedItem = this.serv.selectedItem;
-      this.serv.selectedItem = event.target.textContent;
+      this.serv.oldSelectedUrl = this.serv.selectedUrl;
+      this.serv.selectedUrl = event.target.textContent;
     }
 
     console.log(event.target.textContent);
     // this.selectedItem = event.target.textContent;
 
-    this.myEvent.emit(null);
+    this.setUrlEvent.emit(null);
   }
 
-  deSelectAllItems(): void{
+  /**
+   * deselect all history URLs and update selectedUrl & oldSelectedUrl
+   */
+  deselectAllItems(): void{
     const list = document.getElementById('list');
     if (list.hasChildNodes()) {
       for (let i = 0; i < list.childElementCount; i++){
         list.children[i].classList.remove('active');
       }
     }
-    this.serv.oldSlectedItem = this.serv.selectedItem;
-    this.serv.selectedItem = null;
+    this.serv.oldSelectedUrl = this.serv.selectedUrl;
+    this.serv.selectedUrl = null;
   }
 
   ngOnInit(): void {

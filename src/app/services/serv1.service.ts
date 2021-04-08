@@ -1,9 +1,9 @@
 export class Serv1Service{
-  servSearchValue = null;
   history = [];
+  searchUrl = null;
+  selectedUrl = null;
+  oldSelectedUrl = null;
 
-  selectedItem = null;
-  oldSlectedItem = null;
 
   /**
    * Get id of Youtube video
