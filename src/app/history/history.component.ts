@@ -54,8 +54,4 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onBtn(): void{
-    console.log('selectedItem : ' + this.serv.selectedItem);
-  }
-
 }

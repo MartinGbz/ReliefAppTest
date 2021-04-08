@@ -19,8 +19,9 @@ export class VideoViewComponent implements OnInit {
    */
   setUrl(from): void{
     console.log('SET URL');
-    console.log('this.serv.servSearchValue = ' + this.serv.servSearchValue);
+    console.log('this.serv.oldSlectedItem = ' + this.serv.oldSlectedItem);
     console.log('this.serv.selectedItem = ' + this.serv.selectedItem);
+    console.log('this.serv.servSearchValue = ' + this.serv.servSearchValue);
     // this.URLvideo = this.serv.servSearchValue;
 
     if (from === 'search' && this.serv.servSearchValue != null){
