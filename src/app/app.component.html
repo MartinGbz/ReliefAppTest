@@ -1,17 +1,10 @@
 <div class="container-fluid">
-  <div class="row ">
+  <div class="row">
     <div class="col-md-4">
     </div>
-    <div class="col-md-4" style="background-color: bisque">
-      <div class="row ">
-        <div class="col-md-6">
-          <!--Search bar-->
-          <app-search-bar [type]="bar1" color='blue'></app-search-bar>
-        </div>
-        <div class="col-md-6">
-          <!--Button-->
-          <button class="btn btn-success" [disabled]="!isAuth" (click)="onSwitchOn()">Search</button>
-        </div>
+    <div class="col-md-4" style="background-color: bisque; height: 200px">
+      <div class="row align-content-center" style="height: 200px">
+        <app-search-bar placeholder="URL"></app-search-bar>
       </div>
     </div>
   </div>
@@ -29,6 +22,4 @@
       <app-bookmarks></app-bookmarks>
     </div>
   </div>
-
-
 </div>
