@@ -4,6 +4,10 @@ export class Serv1Service{
   selectedUrl = null;
   oldSelectedUrl = null;
 
+  currentVideoUrl = null;
+
+  bookmarks = [];
+
 
   /**
    * Get id of Youtube video

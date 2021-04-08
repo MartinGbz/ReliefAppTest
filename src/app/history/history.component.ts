@@ -22,6 +22,7 @@ export class HistoryComponent implements OnInit {
       this.deselectAllItems();
       event.target.classList.add('active');
       this.serv.selectedUrl = event.target.textContent;
+      this.serv.currentVideoUrl = this.serv.selectedUrl;
     }
 
     console.log(event.target.textContent);

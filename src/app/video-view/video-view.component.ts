@@ -19,6 +19,7 @@ export class VideoViewComponent implements OnInit {
     console.log('this.serv.oldSlectedItem = ' + this.serv.oldSelectedUrl);
     console.log('this.serv.selectedItem = ' + this.serv.selectedUrl);
     console.log('this.serv.servSearchValue = ' + this.serv.searchUrl);
+    console.log('this.serv.currentVideoUrl = ' + this.serv.currentVideoUrl);
 
     if (from === 'search' && this.serv.searchUrl != null){
       if (this.serv.getEmbedURL(this.serv.searchUrl) != null) {

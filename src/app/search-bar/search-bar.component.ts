@@ -25,6 +25,7 @@ export class SearchBarComponent implements OnInit {
     if (!( (this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))){
       // current video
       this.serv.searchUrl = this.searchContent;
+      this.serv.currentVideoUrl = this.searchContent;
       // add current video to history
       this.serv.history.push(this.searchContent);
       // display array of history
