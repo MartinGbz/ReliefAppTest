@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-4" style="background-color: bisque; height: 200px">
       <div class="row align-content-center" style="height: 200px">
-        <app-search-bar placeholder="URL"></app-search-bar>
+        <app-search-bar placeholder="URL" (myEvent)="video.setUrl()"></app-search-bar>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-4" style="background-color: coral">
       <!--Video player-->
-      <app-video-view></app-video-view>
+      <app-video-view #video></app-video-view>
     </div>
     <div class="col-md-4" style="background-color: royalblue">
       <!--Bookmark-->

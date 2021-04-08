@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
+
+// import { EventEmitter } from '@angular/core';
+// import * as events from 'events';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,6 +11,9 @@ import {Serv1Service} from '../services/serv1.service';
 })
 export class SearchBarComponent implements OnInit {
   @Input() placeholder: string;
+  // @Output() myEvent = new events.EventEmitter(); // enable launch of another component function
+  @Output() myEvent: EventEmitter<any> = new EventEmitter();
+
   public searchContent;
 
   constructor(private serv: Serv1Service) {
@@ -27,6 +33,7 @@ export class SearchBarComponent implements OnInit {
         console.log(entry);
       }
     }
+    this.myEvent.emit(null); // enable launch of another component function
   }
 
   getTextSearchBox(): void {
