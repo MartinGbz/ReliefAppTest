@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
 
 @Component({
@@ -7,6 +7,7 @@ import {Serv1Service} from '../services/serv1.service';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  @Output() myEvent: EventEmitter<any> = new EventEmitter();
   htmlToAdd;
   history = [];
 
@@ -17,7 +18,7 @@ export class HistoryComponent implements OnInit {
   onItem(event): void{
     if (event.target.classList.contains('active')) {
       // remove active selected
-      event.target.classList.remove('active');
+      // event.target.classList.remove('active');
       this.serv.selectedItem = null;
     }
     else {
@@ -35,6 +36,7 @@ export class HistoryComponent implements OnInit {
     console.log(event.target.textContent);
     // this.selectedItem = event.target.textContent;
 
+    this.myEvent.emit(null);
   }
 
   ngOnInit(): void {

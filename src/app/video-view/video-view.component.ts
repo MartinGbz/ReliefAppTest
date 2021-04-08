@@ -13,11 +13,18 @@ export class VideoViewComponent implements OnInit {
 
   }
 
-  setUrl(): void{
+  setUrl(from): void{
     console.log('SET URL');
     console.log('this.serv.servSearchValue = ' + this.serv.servSearchValue);
     // this.URLvideo = this.serv.servSearchValue;
-    document.getElementById('video').setAttribute('src', this.getEmbedURL(this.serv.servSearchValue));
+
+    if (from === 'search' && this.serv.servSearchValue != null){
+      document.getElementById('video').setAttribute('src', this.getEmbedURL(this.serv.servSearchValue));
+    }
+    if (from === 'select' && this.serv.selectedItem != null){
+      document.getElementById('video').setAttribute('src', this.getEmbedURL(this.serv.selectedItem));
+    }
+
     console.log(document.getElementById('video'));
   }
 
