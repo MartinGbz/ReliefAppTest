@@ -21,11 +21,11 @@ export class SearchBarComponent implements OnInit {
 
   onSearch(): void{
     console.log('searchContent : ' + this.searchContent);
-    // 1st and 2nd condition are maybe useless
+    // 1st and 2nd conditions are maybe useless
     if (!( (this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))){
       // current video
       this.serv.searchUrl = this.searchContent;
-      // add curent video in history
+      // add current video to history
       this.serv.history.push(this.searchContent);
       // display array of history
       console.log('History list :');
@@ -38,11 +38,10 @@ export class SearchBarComponent implements OnInit {
       this.serv.searchUrl = null;
       this.urlNotFound();
     }
-    this.setUrlEvent.emit(null); // setUrl() (in Video)
-    this.deselectItemsEvent.emit(null); // deselectItemAll() (in History)
+    this.setUrlEvent.emit(null); // setUrl() (in video-view)
+    this.deselectItemsEvent.emit(null); // deselectItemAll() (in history)
   }
 
-  // call by video
   /**
    * function called by video-view : rest Textbox & display URL error message
    */

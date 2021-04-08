@@ -16,31 +16,22 @@ export class HistoryComponent implements OnInit {
 
   onItem(event): void{
     if (event.target.classList.contains('active')) {
-      // remove active selected
-      // event.target.classList.remove('active');
       this.serv.oldSelectedUrl = this.serv.selectedUrl;
     }
     else {
-      // reset selection
-      if (event.target.parentElement.hasChildNodes()) {
-        for (let i = 0; i < event.target.parentElement.childElementCount; i++){
-          event.target.parentElement.children[i].classList.remove('active');
-        }
-      }
-      // add active selected
+      this.deselectAllItems();
       event.target.classList.add('active');
-      this.serv.oldSelectedUrl = this.serv.selectedUrl;
       this.serv.selectedUrl = event.target.textContent;
     }
 
     console.log(event.target.textContent);
-    // this.selectedItem = event.target.textContent;
 
-    this.setUrlEvent.emit(null);
+    this.setUrlEvent.emit(null); // setUrl() (in video-view)
   }
 
   /**
    * deselect all history URLs and update selectedUrl & oldSelectedUrl
+   * called also by search-bar
    */
   deselectAllItems(): void{
     const list = document.getElementById('list');

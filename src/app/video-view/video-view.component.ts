@@ -11,15 +11,14 @@ export class VideoViewComponent implements OnInit {
   constructor(private serv: Serv1Service) {}
 
   /**
-   * Edit url attribut of iframe
-   * @param from : search=>come from search button / select=>come from item selection
+   * Edit src attribute of iframe
+   * @param from : 'search' => function called by search button click / 'select' => function called by urlSelection
    */
   setUrl(from): void{
     console.log('SET URL');
     console.log('this.serv.oldSlectedItem = ' + this.serv.oldSelectedUrl);
     console.log('this.serv.selectedItem = ' + this.serv.selectedUrl);
     console.log('this.serv.servSearchValue = ' + this.serv.searchUrl);
-    // this.URLvideo = this.serv.servSearchValue;
 
     if (from === 'search' && this.serv.searchUrl != null){
       if (this.serv.getEmbedURL(this.serv.searchUrl) != null) {
