@@ -1,7 +1,14 @@
-<label style="text-align: center; display: block; height: 50px; font-size: 25px; font-weight: bold">History</label>
-<div class="list-group" id="list" style="height: 200px">
+<h3 style="text-align: center; display: block; height: 50px; font-weight: bold"><i class="fa fa-history"></i> History</h3>
+<div class="list-group" id="list" style="height: 500px; overflow: scroll; -webkit-overflow-scrolling: touch;">
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let h of history.reverse()" [textContent]="h" (click)="onItem($event)"></button>-->
   <!-- *** SERVER *** -->
-  <button class="list-group-item list-group-item-action" *ngFor="let h of serv1Service.history.reverse()" [class]="h.url == serv1Service.currentVideoUrl ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'" [class.newDevice]="h.url === serv1Service.currentVideoUrl" [textContent]="h.url" (click)="onItem($event)"></button>
+  <button
+    class="list-group-item list-group-item-action"
+    *ngFor="let h of serv1Service.history.reverse()"
+    [class]="h.url == serv1Service.currentVideoUrl ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'"
+    [textContent]="h.url"
+    (click)="onItem($event)"
+    style="font-size: small"
+  ></button>
 </div>

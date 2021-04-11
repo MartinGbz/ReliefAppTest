@@ -63,7 +63,7 @@ export class AppComponent implements OnInit{
     setTimeout(
       () => {
         this.isHiddenLabel = true;
-      }, 2000
+      }, 2500
     );
   }
 

@@ -1,10 +1,18 @@
-<label style="text-align: center; display: block; height: 50px; font-size: 25px; font-weight: bold">Bookmarks</label>
-<button class="btn bg-primary" style="margin-right: 10px" (click)="onAddBookMarks()">Add to Bookmarks</button>
-<button class="btn bg-primary" (click)="onSeeBookMarks()" [textContent]="valueButton">Show Bookmarks</button>
+<h3 style="text-align: center; display: block; height: 50px; font-weight: bold"><i class="fa fa-bookmark"></i> Bookmarks</h3>
+<button class="btn bg-primary"
+        style="margin-right: 10px; font-size: medium"
+        (click)="onAddBookMarks()">
+        Add to Bookmarks <i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+<button class="btn bg-primary" style="font-size: medium" (click)="onSeeBookMarks()" [innerHTML]="valueButton">Show Bookmarks</button>
 <label id="bookmarkMsgLabel" style="font-weight: bold; display: block" [hidden]="isHiddenLabel"></label>
-<div class="list-group" id="list" style="height: 200px" [hidden]="isHidden">
+<div class="list-group" id="list" style="height: 500px; margin-top: 10px; overflow: scroll;" [hidden]="isHidden">
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>-->
   <!-- *** SERVER *** -->
-  <button class="list-group-item list-group-item-action" *ngFor="let b of serv1Service.bookmarks.reverse()" [textContent]="b.url"></button>
+  <button class="list-group-item list-group-item-action"
+          *ngFor="let b of serv1Service.bookmarks.reverse()"
+          [textContent]="b.url"
+          style="font-size: small; display: flex "
+  ></button>
 </div>

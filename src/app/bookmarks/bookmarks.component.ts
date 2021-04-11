@@ -10,7 +10,7 @@ import {BookmarkModel} from '../models/bookmark.model';
 })
 export class BookmarksComponent implements OnInit {
   isHidden = true;
-  valueButton = 'See Bookmarks';
+  valueButton = '<i class="fa fa-eye" aria-hidden="true"></i>';
   isHiddenLabel = true;
 
   constructor(public serv1Service: Serv1Service, private bookmarkService: BookmarkService) {}
@@ -47,11 +47,11 @@ export class BookmarksComponent implements OnInit {
     if (this.isHidden === true)
     {
       this.isHidden = false;
-      this.setValueButton('Hide Bookmarks');
+      this.setValueButton('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
     }
     else {
       this.isHidden = true;
-      this.setValueButton('Show Bookmarks');
+      this.setValueButton('<i class="fa fa-eye" aria-hidden="true"></i>');
     }
   }
 

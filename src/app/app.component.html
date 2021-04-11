@@ -9,15 +9,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4" style="background-color: cadetblue">
+    <div class="col-md-2" style="background-color: cadetblue;">
       <!--History-->
       <app-history #historyComponent (setUrlEvent)="videoViewComponent.setUrl('select')"></app-history>
     </div>
-    <div class="col-md-4" style="background-color: royalblue">
+    <div class="col-md-8" style="background-color: black">
       <!--Video player-->
       <app-video-view #videoViewComponent></app-video-view>
     </div>
-    <div class="col-md-4" style="background-color: indianred">
+    <div class="col-md-2" style="background-color: indianred">
       <!--Bookmark-->
       <app-bookmarks></app-bookmarks>
     </div>
