@@ -2,7 +2,6 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
 import {APIService} from '../services/history.service';
 import {UrlModel} from '../models/Url.model';
-import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
@@ -33,16 +32,6 @@ export class SearchBarComponent implements OnInit {
       // *** LOCAL ***
       // add current video to history
       // this.serv.history.push(this.searchContent);
-
-      // *** SERVER ***
-      // post on server
-      const url = new UrlModel();
-      url.url = this.searchContent;
-      await this.servAPI.postUrlToHistory(url); // await : we need to be sure that data has been send successfully
-      // get from serv
-      this.servAPI.getHistory();
-
-      // *** LOCAL ***
       // // update history local storage
       // localStorage.setItem('history', JSON.stringify(this.serv.history));
       // // display array of history
@@ -51,11 +40,22 @@ export class SearchBarComponent implements OnInit {
       //   console.log(entry);
       // }
 
+      // *** SERVER ***
+      // post on server
+      const url = new UrlModel();
+      url.url = this.searchContent;
+      await this.servAPI.postUrlToHistory(url); // await : we need to be sure that data has been send successfully
+      // get history from serv
+      this.servAPI.getHistory();
+
       this.setLabel('');
-    } else {
+    }
+
+    else {
       this.serv.searchUrl = null;
       this.urlNotFound();
     }
+
     this.setUrlEvent.emit(null); // setUrl() (in video-view)
     this.deselectItemsEvent.emit(null); // deselectItemAll() (in history)
   }

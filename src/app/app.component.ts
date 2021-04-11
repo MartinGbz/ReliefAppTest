@@ -24,19 +24,6 @@ export class AppComponent implements OnInit{
     // *** SERVER ***
     servAPI.getHistory();
 
-    // console.log('serv.history :');
-    // console.log(serv.history);
-
-    // console.log('serv.urlHistory :');
-    // console.log(serv.urlHistory);
-    // for (const h of serv.urlHistory){
-    //   console.log(h);
-    //   this.historyTemp.push(h.url);
-    // }
-    // console.log('historyTemp');
-    // console.log(this.historyTemp);
-    // serv.history = this.historyTemp;
-
 
     // *** LOCAL ***
     // get bookmarks (from localStorage)
