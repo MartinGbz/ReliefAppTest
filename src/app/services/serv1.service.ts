@@ -1,5 +1,11 @@
+import {UrlModel} from '../models/Url.model';
+
 export class Serv1Service{
-  history = [];
+  // *** LOCAL HISTORY ***
+  // history = [];
+  // *** SERVER HISTORY ***
+  urlHistory: UrlModel[] = [];
+
   searchUrl = null;
   selectedUrl = null;
   oldSelectedUrl = null;

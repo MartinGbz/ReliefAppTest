@@ -1,5 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
+import {APIService} from '../services/history.service';
+import {UrlModel} from '../models/Url.model';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
@@ -15,29 +18,41 @@ export class SearchBarComponent implements OnInit {
 
   public searchContent;
 
-  constructor(private serv: Serv1Service) {
+  constructor(private serv: Serv1Service, private servAPI: APIService) {
     this.searchContent = null;
   }
 
-  onSearch(): void{
+  async onSearch(): Promise<void> {
     console.log('searchContent : ' + this.searchContent);
     // 1st and 2nd conditions are maybe useless
-    if (!( (this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))){
+    if (!((this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))) {
       // current video
       this.serv.searchUrl = this.searchContent;
       this.serv.currentVideoUrl = this.searchContent;
+
+      // *** LOCAL ***
       // add current video to history
-      this.serv.history.push(this.searchContent);
-      // update history local storage
-      localStorage.setItem('history', JSON.stringify(this.serv.history));
-      // display array of history
-      console.log('History list :');
-      for (const entry of this.serv.history) {
-        console.log(entry);
-      }
+      // this.serv.history.push(this.searchContent);
+
+      // *** SERVER ***
+      // post on server
+      const url = new UrlModel();
+      url.url = this.searchContent;
+      await this.servAPI.postUrlToHistory(url); // await : we need to be sure that data has been send successfully
+      // get from serv
+      this.servAPI.getHistory();
+
+      // *** LOCAL ***
+      // // update history local storage
+      // localStorage.setItem('history', JSON.stringify(this.serv.history));
+      // // display array of history
+      // console.log('History list :');
+      // for (const entry of this.serv.history) {
+      //   console.log(entry);
+      // }
+
       this.setLabel('');
-    }
-    else{
+    } else {
       this.serv.searchUrl = null;
       this.urlNotFound();
     }

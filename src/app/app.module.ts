@@ -9,6 +9,7 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { VideoViewComponent } from './video-view/video-view.component';
 
 import { Serv1Service } from './services/serv1.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { Serv1Service } from './services/serv1.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [Serv1Service],
   bootstrap: [AppComponent]

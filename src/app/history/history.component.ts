@@ -8,11 +8,9 @@ import {Serv1Service} from '../services/serv1.service';
 })
 export class HistoryComponent implements OnInit {
   @Output() setUrlEvent: EventEmitter<any> = new EventEmitter();
-  history = [];
 
-  constructor(private serv: Serv1Service) {
-    this.history = serv.history;
-  }
+  // set serv to Public to get access in html file
+  constructor(public serv: Serv1Service) {}
 
   onItem(event): void{
     if (event.target.classList.contains('active')) {
