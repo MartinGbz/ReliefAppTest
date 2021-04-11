@@ -11,7 +11,10 @@ export class APIService {
 
   constructor(private http: HttpClient, private serv: Serv1Service) {}
 
-  getHistory(): void {
+  /**
+   * Update the History array which contains all the history
+   */
+  updateHistory(): void {
     this.http.get('http://localhost:8000/api/history').subscribe(
       (history: UrlModel[]) => {
         if (history) {
@@ -24,7 +27,11 @@ export class APIService {
     );
   }
 
-  postUrlToHistory(url: UrlModel): any {
+  /**
+   * Add a url to the History
+   * @param url url to add to the history
+   */
+  addHistory(url: UrlModel): any {
     return new Promise((resolve, reject) => {
       this.http.post('http://localhost:8000/api/history', url).subscribe(
         (response) => {

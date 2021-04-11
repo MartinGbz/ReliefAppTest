@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Serv1Service} from './services/serv1.service';
 import {APIService} from './services/history.service';
-import {UrlModel} from './models/Url.model';
+import {BookmarkService} from './services/bookmark.service';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +10,27 @@ import {UrlModel} from './models/Url.model';
 })
 export class AppComponent implements OnInit{
 
-  h: UrlModel[] = [];
-  historyTemp = [];
-
-  constructor(private serv: Serv1Service, private servAPI: APIService) {
+  constructor(private serv1Service: Serv1Service, private servAPI: APIService, private bookmarkService: BookmarkService) {
     // *** LOCAL ***
-    // get history (from localStorage)
+    // // get history (from localStorage)
     // if (localStorage.getItem('history') !== null) {
-    //   console.log('history =' + serv.history);
-    //   serv.history = JSON.parse(localStorage.getItem('history'));
+    //   console.log('history =' + serv1Service.history);
+    //   serv1Service.history = JSON.parse(localStorage.getItem('history'));
     // }
 
     // *** SERVER ***
-    servAPI.getHistory();
+    servAPI.updateHistory();
 
 
     // *** LOCAL ***
-    // get bookmarks (from localStorage)
-    if (localStorage.getItem('bookmarks') !== null) {
-      console.log('bookmarks =' + serv.bookmarks);
-      serv.bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-    }
+    // // get bookmarks (from localStorage)
+    // if (localStorage.getItem('bookmarks') !== null) {
+    //   console.log('bookmarks =' + serv1Service.bookmarks);
+    //   serv1Service.bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    // }
+
+    // *** SERVER ***
+    bookmarkService.updateBookmarks();
   }
 
   ngOnInit(): void {

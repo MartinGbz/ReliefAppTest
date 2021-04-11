@@ -3,5 +3,8 @@
 <button class="btn bg-primary" (click)="onSeeBookMarks()" [textContent]="valueButton">Show Bookmarks</button>
 <label id="label" style="color: #5de553; font-weight: bold; display: block" [hidden]="isHiddenLabel">The URL has been added to your Bookmarks</label>
 <div class="list-group" id="list" style="height: 200px" [hidden]="isHidden">
-  <button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>
+  <!-- *** LOCAL *** -->
+  <!--<button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>-->
+  <!-- *** SERVER *** -->
+  <button class="list-group-item list-group-item-action" *ngFor="let b of serv.bookmarks.reverse()" [textContent]="b.url"></button>
 </div>

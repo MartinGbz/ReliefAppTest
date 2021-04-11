@@ -1,4 +1,5 @@
 import {UrlModel} from '../models/Url.model';
+import {BookmarkModel} from '../models/bookmark.model';
 
 export class Serv1Service{
   // *** LOCAL HISTORY ***
@@ -6,13 +7,18 @@ export class Serv1Service{
   // *** SERVER HISTORY ***
   urlHistory: UrlModel[] = [];
 
+  // *** LOCAL HISTORY ***
+  // bookmarks = [];
+  // *** SERVER HISTORY ***
+  bookmarks: BookmarkModel[] = [];
+
   searchUrl = null;
   selectedUrl = null;
   oldSelectedUrl = null;
 
   currentVideoUrl = null;
 
-  bookmarks = [];
+
 
 
   /**

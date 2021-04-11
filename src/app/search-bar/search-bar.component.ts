@@ -44,9 +44,9 @@ export class SearchBarComponent implements OnInit {
       // post on server
       const url = new UrlModel();
       url.url = this.searchContent;
-      await this.servAPI.postUrlToHistory(url); // await : we need to be sure that data has been send successfully
+      await this.servAPI.addHistory(url); // await : we need to be sure that data has been send successfully
       // get history from serv
-      this.servAPI.getHistory();
+      this.servAPI.updateHistory();
 
       this.setLabel('');
     }
@@ -70,7 +70,7 @@ export class SearchBarComponent implements OnInit {
 
   /**
    * Set text property of the label
-   * @param msg : message to display
+   * @param msg message to display
    */
   setLabel(msg): void{
     document.getElementById('label').innerText = msg;
