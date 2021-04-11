@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { UrlModel } from '../models/Url.model';
+import { HistoryModel } from '../models/history.model';
 import { HttpClient } from '@angular/common/http';
 import {Serv1Service} from './serv1.service';
 
@@ -7,18 +7,18 @@ import {Serv1Service} from './serv1.service';
   providedIn: 'root'
 })
 
-export class APIService {
+export class HistoryService {
 
-  constructor(private http: HttpClient, private serv: Serv1Service) {}
+  constructor(private http: HttpClient, private serv1Service: Serv1Service) {}
 
   /**
    * Update the History array which contains all the history
    */
   updateHistory(): void {
     this.http.get('http://localhost:8000/api/history').subscribe(
-      (history: UrlModel[]) => {
+      (history: HistoryModel[]) => {
         if (history) {
-          this.serv.urlHistory = history;
+          this.serv1Service.history = history;
         }
       },
       (error) => {
@@ -31,7 +31,7 @@ export class APIService {
    * Add a url to the History
    * @param url url to add to the history
    */
-  addHistory(url: UrlModel): any {
+  addHistory(url: HistoryModel): any {
     return new Promise((resolve, reject) => {
       this.http.post('http://localhost:8000/api/history', url).subscribe(
         (response) => {

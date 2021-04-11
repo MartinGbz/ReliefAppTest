@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Serv1Service} from './services/serv1.service';
-import {APIService} from './services/history.service';
+import {HistoryService} from './services/history.service';
 import {BookmarkService} from './services/bookmark.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {BookmarkService} from './services/bookmark.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private serv1Service: Serv1Service, private servAPI: APIService, private bookmarkService: BookmarkService) {
+  constructor(private serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService) {
     // *** LOCAL ***
     // // get history (from localStorage)
     // if (localStorage.getItem('history') !== null) {
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
     // }
 
     // *** SERVER ***
-    servAPI.updateHistory();
+    historyService.updateHistory();
 
 
     // *** LOCAL ***

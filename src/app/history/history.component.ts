@@ -9,18 +9,18 @@ import {Serv1Service} from '../services/serv1.service';
 export class HistoryComponent implements OnInit {
   @Output() setUrlEvent: EventEmitter<any> = new EventEmitter();
 
-  // set serv to Public to get access in html file
-  constructor(public serv: Serv1Service) {}
+  // set serv1Service to Public to get access in html file
+  constructor(public serv1Service: Serv1Service) {}
 
   onItem(event): void{
     if (event.target.classList.contains('active')) {
-      this.serv.oldSelectedUrl = this.serv.selectedUrl;
+      this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
     }
     else {
       this.deselectAllItems();
       event.target.classList.add('active');
-      this.serv.selectedUrl = event.target.textContent;
-      this.serv.currentVideoUrl = this.serv.selectedUrl;
+      this.serv1Service.selectedUrl = event.target.textContent;
+      this.serv1Service.currentVideoUrl = this.serv1Service.selectedUrl;
     }
 
     console.log(event.target.textContent);
@@ -39,8 +39,8 @@ export class HistoryComponent implements OnInit {
         list.children[i].classList.remove('active');
       }
     }
-    this.serv.oldSelectedUrl = this.serv.selectedUrl;
-    this.serv.selectedUrl = null;
+    this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
+    this.serv1Service.selectedUrl = null;
   }
 
   ngOnInit(): void {

@@ -1,11 +1,11 @@
-import {UrlModel} from '../models/Url.model';
+import {HistoryModel} from '../models/history.model';
 import {BookmarkModel} from '../models/bookmark.model';
 
 export class Serv1Service{
   // *** LOCAL HISTORY ***
   // history = [];
   // *** SERVER HISTORY ***
-  urlHistory: UrlModel[] = [];
+  history: HistoryModel[] = [];
 
   // *** LOCAL HISTORY ***
   // bookmarks = [];

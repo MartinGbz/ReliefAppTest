@@ -8,7 +8,7 @@ import {Serv1Service} from '../services/serv1.service';
 })
 export class VideoViewComponent implements OnInit {
 
-  constructor(private serv: Serv1Service) {}
+  constructor(private serv1Service: Serv1Service) {}
 
   /**
    * Edit src attribute of iframe
@@ -16,19 +16,19 @@ export class VideoViewComponent implements OnInit {
    */
   setUrl(from): void{
     console.log('SET URL');
-    console.log('this.serv.oldSlectedItem = ' + this.serv.oldSelectedUrl);
-    console.log('this.serv.selectedItem = ' + this.serv.selectedUrl);
-    console.log('this.serv.servSearchValue = ' + this.serv.searchUrl);
-    console.log('this.serv.currentVideoUrl = ' + this.serv.currentVideoUrl);
+    console.log('this.serv.oldSlectedItem = ' + this.serv1Service.oldSelectedUrl);
+    console.log('this.serv.selectedItem = ' + this.serv1Service.selectedUrl);
+    console.log('this.serv.servSearchValue = ' + this.serv1Service.searchUrl);
+    console.log('this.serv.currentVideoUrl = ' + this.serv1Service.currentVideoUrl);
 
-    if (from === 'search' && this.serv.searchUrl != null){
-      if (this.serv.getEmbedURL(this.serv.searchUrl) != null) {
-        document.getElementById('video').setAttribute('src', this.serv.getEmbedURL(this.serv.searchUrl));
+    if (from === 'search' && this.serv1Service.searchUrl != null){
+      if (this.serv1Service.getEmbedURL(this.serv1Service.searchUrl) != null) {
+        document.getElementById('video').setAttribute('src', this.serv1Service.getEmbedURL(this.serv1Service.searchUrl));
       }
     }
     // if we select the same item we don't browse the video again
-    if (from === 'select' && this.serv.selectedUrl !== this.serv.oldSelectedUrl){
-      document.getElementById('video').setAttribute('src', this.serv.getEmbedURL(this.serv.selectedUrl));
+    if (from === 'select' && this.serv1Service.selectedUrl !== this.serv1Service.oldSelectedUrl){
+      document.getElementById('video').setAttribute('src', this.serv1Service.getEmbedURL(this.serv1Service.selectedUrl));
     }
 
     console.log(document.getElementById('video'));

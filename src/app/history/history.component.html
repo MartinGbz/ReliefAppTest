@@ -3,5 +3,5 @@
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let h of history.reverse()" [textContent]="h" (click)="onItem($event)"></button>-->
   <!-- *** SERVER *** -->
-  <button class="list-group-item list-group-item-action" *ngFor="let h of serv.urlHistory.reverse()" [textContent]="h.url" (click)="onItem($event)"></button>
+  <button class="list-group-item list-group-item-action" *ngFor="let h of serv1Service.history.reverse()" [textContent]="h.url" (click)="onItem($event)"></button>
 </div>

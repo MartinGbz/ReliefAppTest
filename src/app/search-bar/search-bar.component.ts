@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Serv1Service} from '../services/serv1.service';
-import {APIService} from '../services/history.service';
-import {UrlModel} from '../models/Url.model';
+import {HistoryService} from '../services/history.service';
+import {HistoryModel} from '../models/history.model';
 
 @Component({
   selector: 'app-search-bar',
@@ -17,17 +17,17 @@ export class SearchBarComponent implements OnInit {
 
   public searchContent;
 
-  constructor(private serv: Serv1Service, private servAPI: APIService) {
+  constructor(private serv1Service: Serv1Service, private historyService: HistoryService) {
     this.searchContent = null;
   }
 
   async onSearch(): Promise<void> {
     console.log('searchContent : ' + this.searchContent);
     // 1st and 2nd conditions are maybe useless
-    if (!((this.searchContent == null) || (this.searchContent === '') || (this.serv.getEmbedURL(this.searchContent) == null))) {
+    if (!((this.searchContent == null) || (this.searchContent === '') || (this.serv1Service.getEmbedURL(this.searchContent) == null))) {
       // current video
-      this.serv.searchUrl = this.searchContent;
-      this.serv.currentVideoUrl = this.searchContent;
+      this.serv1Service.searchUrl = this.searchContent;
+      this.serv1Service.currentVideoUrl = this.searchContent;
 
       // *** LOCAL ***
       // add current video to history
@@ -42,17 +42,17 @@ export class SearchBarComponent implements OnInit {
 
       // *** SERVER ***
       // post on server
-      const url = new UrlModel();
+      const url = new HistoryModel();
       url.url = this.searchContent;
-      await this.servAPI.addHistory(url); // await : we need to be sure that data has been send successfully
+      await this.historyService.addHistory(url); // await : we need to be sure that data has been send successfully
       // get history from serv
-      this.servAPI.updateHistory();
+      this.historyService.updateHistory();
 
       this.setLabel('');
     }
 
     else {
-      this.serv.searchUrl = null;
+      this.serv1Service.searchUrl = null;
       this.urlNotFound();
     }
 

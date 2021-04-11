@@ -9,14 +9,11 @@ import {BookmarkModel} from '../models/bookmark.model';
   styleUrls: ['./bookmarks.component.css']
 })
 export class BookmarksComponent implements OnInit {
-  bookmarks = [];
   isHidden = true;
   valueButton = 'See Bookmarks';
   isHiddenLabel = true;
 
-  constructor(public serv: Serv1Service, private bookmarkService: BookmarkService) {
-    this.bookmarks = serv.bookmarks;
-  }
+  constructor(public serv1Service: Serv1Service, private bookmarkService: BookmarkService) {}
 
   async onAddBookMarks(): Promise<void> {
     // *** LOCAL ***
@@ -26,7 +23,7 @@ export class BookmarksComponent implements OnInit {
     // localStorage.setItem('bookmarks', JSON.stringify(this.serv.bookmarks));
 
     // *** SERVER ***
-    await this.bookmarkService.addBookmarks(new BookmarkModel(this.serv.currentVideoUrl));
+    await this.bookmarkService.addBookmarks(new BookmarkModel(this.serv1Service.currentVideoUrl));
     this.bookmarkService.updateBookmarks();
 
     this.isHiddenLabel = false;
