@@ -14,16 +14,20 @@ export class BookmarkService {
   /**
    * Update Bookmarks array which contains all the bookmarks
    */
-  updateBookmarks(): void {
+  updateBookmarks(): any {
     this.http.get('http://localhost:8000/api/bookmarks').subscribe(
       (bookmarks: BookmarkModel[]) => {
         if (bookmarks) {
           this.serv1Service.bookmarks = bookmarks;
+          this.serv1Service.nbBookmark = bookmarks.length;
+          console.log('this.serv1Service.bookmarks');
           console.log(this.serv1Service.bookmarks);
+          return true;
         }
       },
       (error) => {
         console.log(error);
+        return false;
       }
     );
   }

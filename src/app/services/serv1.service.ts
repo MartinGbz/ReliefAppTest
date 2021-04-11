@@ -12,13 +12,13 @@ export class Serv1Service{
   // *** SERVER HISTORY ***
   bookmarks: BookmarkModel[] = [];
 
+  nbBookmark = 0;
+
   searchUrl = null;
   selectedUrl = null;
   oldSelectedUrl = null;
 
   currentVideoUrl = null;
-
-
 
 
   /**

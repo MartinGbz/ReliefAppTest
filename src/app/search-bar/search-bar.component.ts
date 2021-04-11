@@ -61,7 +61,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   /**
-   * function called by video-view : rest Textbox & display URL error message
+   * function called by video-view : reset Textbox & display URL error message
    */
   urlNotFound(): void{
     this.setLabel('URL Not found');

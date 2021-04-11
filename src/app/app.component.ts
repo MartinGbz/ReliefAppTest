@@ -10,7 +10,11 @@ import {BookmarkService} from './services/bookmark.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService) {
+  isHiddenLabel = true;
+  constructor(public serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService) {
+  }
+
+  async ngOnInit(): Promise<void> {
     // *** LOCAL ***
     // // get history (from localStorage)
     // if (localStorage.getItem('history') !== null) {
@@ -19,7 +23,7 @@ export class AppComponent implements OnInit{
     // }
 
     // *** SERVER ***
-    historyService.updateHistory();
+    this.historyService.updateHistory();
 
 
     // *** LOCAL ***
@@ -30,11 +34,38 @@ export class AppComponent implements OnInit{
     // }
 
     // *** SERVER ***
-    bookmarkService.updateBookmarks();
+    await this.bookmarkService.updateBookmarks(); // I can't wait to get the bookmarks, I don't know why
+
+    console.log('this.serv1Service.bookmarks');
+    console.log(this.serv1Service.bookmarks);
+
+    // infinite loop
+    // while (this.serv1Service.bookmarks.length === 0){
+    //   console.log('hello');
+    // }
+    // const msg = 'You have ' + this.serv1Service.bookmarks.length + ' urls in your bookmarks';
+    // const msg = 'You have ' + this.serv1Service.nbBookmark + ' urls in your bookmarks';
+    // document.getElementById('nb').innerText = msg;
+
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   const msg = 'You have ' + this.serv1Service.bookmarks.length + ' urls in your bookmarks';
+    //   document.getElementById('nb').innerText = msg;
+    // }, false);
+
+    // So I decided to create a nbBookmark variable and put it directly in the textContent field of the HTML
+
+    this.displayLabel();
   }
 
-  ngOnInit(): void {
-
+  displayLabel(): void{
+    this.isHiddenLabel = false;
+    setTimeout(
+      () => {
+        this.isHiddenLabel = true;
+      }, 2000
+    );
   }
+
 }
 
