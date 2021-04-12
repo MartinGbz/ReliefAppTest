@@ -20,8 +20,6 @@ export class BookmarkService {
         if (bookmarks) {
           this.serv1Service.bookmarks = bookmarks;
           this.serv1Service.nbBookmark = bookmarks.length;
-          console.log('this.serv1Service.bookmarks');
-          console.log(this.serv1Service.bookmarks);
           return true;
         }
       },

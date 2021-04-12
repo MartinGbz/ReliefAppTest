@@ -12,6 +12,7 @@ export class Serv1Service{
   // *** SERVER HISTORY ***
   bookmarks: BookmarkModel[] = [];
 
+  // number of bookmarks
   nbBookmark = 0;
 
   searchUrl = null;

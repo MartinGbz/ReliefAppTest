@@ -35,12 +35,6 @@ export class HistoryService {
       (lastHistory: HistoryModel[]) => {
         if (lastHistory) {
           this.serv1Service.currentVideoId = lastHistory[0]._id;
-          console.log('*** this.serv1Service.verifLast');
-          console.log('getlast');
-          console.log(lastHistory[0]._id);
-          // return lastHistory[0]._id;
-          // console.log(lastHistory);
-          // console.log(this.serv1Service.currentVideoId);
         }
       },
       (error) => {
