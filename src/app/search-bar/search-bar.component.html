@@ -1,10 +1,10 @@
-<div class="row" style="margin-top: 20px">
-  <label for="inputSearch" style="font-size: 20px">Put your YouTube URL below :</label>
-  <div class="col-md-9" style="margin-top: 10px">
+<div class="row" id="higherParent">
+  <label for="inputSearch" id="inputSearchLabel">Put your YouTube URL below :</label>
+  <div class="col-md-9" id="inputSearchParent">
     <input type="text" id="inputSearch" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="searchContent" (keydown.enter)="onSearch()"/>
   </div>
   <div class="col-md-3 align-self-center">
     <button class="btn btn-success"  (click)="onSearch()">Search <i class="fa fa-search" aria-hidden="true"></i></button>
   </div>
 </div>
-<label id="label" style="color: #e55353; font-weight: bold;" [style.visibility]="isHiddenLabel">URL Not found</label>
+<label id="labelErrorMsg" [style.visibility]="isHiddenLabel">URL Not found</label>

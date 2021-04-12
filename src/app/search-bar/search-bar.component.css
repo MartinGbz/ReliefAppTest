@@ -1,0 +1,16 @@
+#higherParent{
+  margin-top: 20px;
+}
+
+#inputSearchLabel{
+  font-size: 20px;
+}
+
+#inputSearchParent{
+  margin-top: 10px;
+}
+
+#labelErrorMsg{
+  color: #e55353;
+  font-weight: bold;
+}

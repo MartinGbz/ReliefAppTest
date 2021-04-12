@@ -15,16 +15,13 @@ export class SearchBarComponent implements OnInit {
 
   @Output() deselectItemsEvent: EventEmitter<any> = new EventEmitter();
 
-  public searchContent;
+  searchContent = null;
 
   isHiddenLabel = 'hidden';
 
-  constructor(private serv1Service: Serv1Service, private historyService: HistoryService) {
-    this.searchContent = null;
-  }
+  constructor(private serv1Service: Serv1Service, private historyService: HistoryService) {}
 
   async onSearch(): Promise<void> {
-    console.log('searchContent : ' + this.searchContent);
     // 1st and 2nd conditions are maybe useless
     if (!((this.searchContent == null) || (this.searchContent === '') || (this.serv1Service.getEmbedURL(this.searchContent) == null))) {
       // current video
@@ -68,7 +65,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   /**
-   * function called by video-view : reset Textbox & display URL error message
+   * function called by video-view : Display URL error message
    */
   urlNotFound(): void{
     this.isHiddenLabel = 'visible';

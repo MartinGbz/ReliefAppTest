@@ -13,6 +13,6 @@
   -webkit-overflow-scrolling: touch;
 }
 
-#list-group-item{
+.list-group-item{
   font-size: small;
 }
