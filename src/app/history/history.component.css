@@ -1,6 +1,18 @@
+#titleHistory{
+  text-align: center;
+  display: block;
+  height: 50px;
+  font-weight: bold;
+  margin-top: 15px
+}
+
 .list-group{
   max-height: 300px;
   margin-bottom: 10px;
   overflow:scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+#list-group-item{
+  font-size: small;
 }

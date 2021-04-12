@@ -23,8 +23,6 @@ export class BookmarksComponent implements OnInit {
     // localStorage.setItem('bookmarks', JSON.stringify(this.serv.bookmarks));
 
     // *** SERVER ***
-    console.log('this.serv1Service.currentVideoUrl');
-    console.log(this.serv1Service.currentVideoUrl);
     if (this.serv1Service.currentVideoUrl !== null){
       await this.bookmarkService.addBookmarks(new BookmarkModel(this.serv1Service.currentVideoUrl));
       this.bookmarkService.updateBookmarks();

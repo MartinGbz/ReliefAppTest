@@ -21,12 +21,10 @@ export class HistoryComponent implements OnInit {
       event.target.classList.add('active');
       this.serv1Service.selectedUrl = event.target.textContent;
       // save last url
-      this.serv1Service.currentVideoUrl = this.serv1Service.selectedUrl;
+      this.serv1Service.currentVideoUrl = event.target.textContent;
       // save last Id
       this.serv1Service.currentVideoId = event.target.id;
     }
-
-    console.log(event.target.textContent);
 
     this.setUrlEvent.emit(null); // setUrl() (in video-view)
   }
