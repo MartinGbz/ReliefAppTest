@@ -36,28 +36,12 @@ export class AppComponent implements OnInit{
     // *** SERVER ***
     await this.bookmarkService.updateBookmarks(); // I can't wait to get the bookmarks, I don't know why
 
-    console.log('this.serv1Service.bookmarks');
-    console.log(this.serv1Service.bookmarks);
-
-    // infinite loop
-    // while (this.serv1Service.bookmarks.length === 0){
-    //   console.log('hello');
-    // }
-    // const msg = 'You have ' + this.serv1Service.bookmarks.length + ' urls in your bookmarks';
-    // const msg = 'You have ' + this.serv1Service.nbBookmark + ' urls in your bookmarks';
-    // document.getElementById('nb').innerText = msg;
-
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   const msg = 'You have ' + this.serv1Service.bookmarks.length + ' urls in your bookmarks';
-    //   document.getElementById('nb').innerText = msg;
-    // }, false);
-
-    // So I decided to create a nbBookmark variable and put it directly in the textContent field of the HTML
-
     this.displayLabel();
   }
 
+  /**
+   * Display the number of bookmarks popup for 2500ms
+   */
   displayLabel(): void{
     this.isHiddenLabel = false;
     setTimeout(
@@ -66,6 +50,4 @@ export class AppComponent implements OnInit{
       }, 2500
     );
   }
-
 }
-

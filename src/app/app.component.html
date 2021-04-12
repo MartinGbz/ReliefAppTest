@@ -9,23 +9,23 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2" style="background-color: #E9897E;">
+    <div class="col-md-2" id="historyComponentDiv">
       <!--History-->
       <app-history #historyComponent (setUrlEvent)="videoViewComponent.setUrl('select')"></app-history>
     </div>
-    <div class="col-md-8" style="background-color: black">
+    <div class="col-md-8" id="videoViewComponentDiv">
       <!--Video player-->
       <app-video-view #videoViewComponent></app-video-view>
     </div>
-    <div class="col-md-2" style="background-color: #63aa99">
+    <div class="col-md-2" id="bookmarksComponentDiv">
       <!--Bookmark-->
       <app-bookmarks></app-bookmarks>
     </div>
   </div>
-  <div class="row" style="margin-top: 100px">
+  <div class="row" id="popupDiv">
     <div class="col-md-4">
     </div>
-    <div class="alert alert-primary col-md-4" role="alert" style="text-align: center; box-shadow: 0 0 30px #2F2F2F;" [hidden]="isHiddenLabel">
+    <div class="alert alert-primary col-md-4" role="alert" id="popup" [hidden]="isHiddenLabel">
       <label id="nb" [textContent]="'You have ' + this.serv1Service.nbBookmark + ' urls in your bookmarks'"></label>
     </div>
   </div>
