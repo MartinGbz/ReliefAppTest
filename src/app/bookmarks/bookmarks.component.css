@@ -1,0 +1,38 @@
+#titleBookmarks{
+  text-align: center;
+  display: block;
+  height: 50px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+#buttonAddBookmark{
+  margin-right: 10px;
+  font-size: medium;
+}
+
+#buttonShowBookmarks{
+  font-size: medium;
+}
+
+#divBookmarkMsgLabel{
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+#bookmarkMsgLabel{
+  font-weight: bolder;
+  display: block;
+}
+
+#list{
+  height: 420px;
+  margin-top: 10px;
+  overflow: scroll;
+}
+
+#buttonBookmark{
+  font-size: small;
+  display: flex
+}

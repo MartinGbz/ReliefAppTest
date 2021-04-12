@@ -9,10 +9,9 @@ import {BookmarkModel} from '../models/bookmark.model';
   styleUrls: ['./bookmarks.component.css']
 })
 export class BookmarksComponent implements OnInit {
-  isHidden = true;
+  isHiddenBookmarks = true;
   valueButton = '<i class="fa fa-eye" aria-hidden="true"></i>';
   isHiddenLabel = 'hidden';
-
 
   constructor(public serv1Service: Serv1Service, private bookmarkService: BookmarkService) {}
 
@@ -35,7 +34,13 @@ export class BookmarksComponent implements OnInit {
       this.setLabel('Error : You must choose a URL to add to the bookmarks', '#fd614f');
     }
 
+    this.displayLabel();
+  }
 
+  /**
+   * Display the error or success label for 3000ms
+   */
+  displayLabel(): void{
     this.isHiddenLabel = 'visible';
     setTimeout(
       () => {
@@ -44,20 +49,19 @@ export class BookmarksComponent implements OnInit {
     );
   }
 
-  onSeeBookMarks(): void{
-    if (this.isHidden === true)
+  /**
+   * Show or Hide Bookmarks
+   */
+  showHideBookMarks(): void{
+    if (this.isHiddenBookmarks === true)
     {
-      this.isHidden = false;
-      this.setValueButton('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
+      this.isHiddenBookmarks = false;
+      this.valueButton = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
     }
     else {
-      this.isHidden = true;
-      this.setValueButton('<i class="fa fa-eye" aria-hidden="true"></i>');
+      this.isHiddenBookmarks = true;
+      this.valueButton = '<i class="fa fa-eye" aria-hidden="true"></i>';
     }
-  }
-
-  setValueButton(msg): void{
-    this.valueButton = msg;
   }
 
   /**
@@ -71,7 +75,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // set the sucess message (the error message works too) to let the element take the necessary place in the page
+    // set the success message (the error message works too) to let the element take the necessary place in the page
     this.setLabel('The URL has been added to your Bookmarks', '#5de553');
   }
 
