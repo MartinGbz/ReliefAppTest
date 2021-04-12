@@ -31,7 +31,7 @@ export class BookmarksComponent implements OnInit {
       this.setLabel('The URL has been added to your Bookmarks', '#5de553');
     }
     else {
-      this.setLabel('Error : You must choose a URL to add to the bookmarks', '#e55353');
+      this.setLabel('Error : You must choose a URL to add to the bookmarks', '#fd614f');
     }
 
 
@@ -66,7 +66,7 @@ export class BookmarksComponent implements OnInit {
    */
   setLabel(msg, color): void{
     document.getElementById('bookmarkMsgLabel').innerText = msg;
-    document.getElementById('bookmarkMsgLabel').setAttribute('style', 'color: ' + color);
+    document.getElementById('bookmarkMsgLabel').setAttribute('style', 'color: ' + color + '; font-weight:bold;');
   }
 
   ngOnInit(): void {

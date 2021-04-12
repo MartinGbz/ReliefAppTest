@@ -1,12 +1,14 @@
-<h3 style="text-align: center; display: block; height: 50px; font-weight: bold"><i class="fa fa-bookmark"></i> Bookmarks</h3>
-<button class="btn bg-primary"
+<h3 style="text-align: center; display: block; height: 50px; font-weight: bold; margin-top: 15px"><i class="fa fa-bookmark"></i> Bookmarks</h3>
+<button class="btn bg-white"
         style="margin-right: 10px; font-size: medium"
         (click)="onAddBookMarks()">
         Add to Bookmarks <i class="fa fa-plus" aria-hidden="true"></i>
 </button>
-<button class="btn bg-primary" style="font-size: medium" (click)="onSeeBookMarks()" [innerHTML]="valueButton">Show Bookmarks</button>
-<label id="bookmarkMsgLabel" style="font-weight: bold; display: block" [hidden]="isHiddenLabel"></label>
-<div class="list-group" id="list" style="height: 500px; margin-top: 10px; overflow: scroll;" [hidden]="isHidden">
+<button class="btn bg-white" style="font-size: medium" (click)="onSeeBookMarks()" [innerHTML]="valueButton">Show Bookmarks</button>
+<div style="background-color: white; margin-top: 10px; border-radius: 5px; box-shadow: 5px 5px 5px #2f2f2f" [hidden]="isHiddenLabel">
+  <label id="bookmarkMsgLabel" style="font-weight: bolder; display: block;"></label>
+</div>
+<div class="list-group" id="list" style="height: 480px; margin-top: 10px; overflow: scroll;" [hidden]="isHidden">
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>-->
   <!-- *** SERVER *** -->
