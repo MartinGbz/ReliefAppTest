@@ -28,6 +28,28 @@ export class HistoryService {
   }
 
   /**
+   * Update the History array which contains all the history
+   */
+   getLastHistory(): any {
+    this.http.get('http://localhost:8000/api/history/last').subscribe(
+      (lastHistory: HistoryModel[]) => {
+        if (lastHistory) {
+          this.serv1Service.currentVideoId = lastHistory[0]._id;
+          console.log('*** this.serv1Service.verifLast');
+          console.log('getlast');
+          console.log(lastHistory[0]._id);
+          // return lastHistory[0]._id;
+          // console.log(lastHistory);
+          // console.log(this.serv1Service.currentVideoId);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
    * Add a url to the History
    * @param url url to add to the history
    */

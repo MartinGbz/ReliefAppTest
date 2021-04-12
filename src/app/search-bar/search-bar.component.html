@@ -1,7 +1,7 @@
 <div class="row" style="margin-top: 20px">
   <label for="inputSearch" style="font-size: 20px">Put your YouTube URL below :</label>
   <div class="col-md-9" style="margin-top: 10px">
-    <input type="text" id="inputSearch" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="searchContent"/>
+    <input type="text" id="inputSearch" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="searchContent" (keydown.enter)="onSearch()"/>
   </div>
   <div class="col-md-3 align-self-center">
     <button class="btn btn-success"  (click)="onSearch()">Search <i class="fa fa-search" aria-hidden="true"></i></button>

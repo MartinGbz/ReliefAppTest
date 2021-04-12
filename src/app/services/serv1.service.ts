@@ -19,6 +19,7 @@ export class Serv1Service{
   oldSelectedUrl = null;
 
   currentVideoUrl = null;
+  currentVideoId = null;
 
 
   /**

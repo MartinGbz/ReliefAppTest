@@ -29,6 +29,8 @@ export class SearchBarComponent implements OnInit {
     if (!((this.searchContent == null) || (this.searchContent === '') || (this.serv1Service.getEmbedURL(this.searchContent) == null))) {
       // current video
       this.serv1Service.searchUrl = this.searchContent;
+      // update currentVideoUrl
+      // save lastUrl
       this.serv1Service.currentVideoUrl = this.searchContent;
 
       // *** LOCAL ***
@@ -49,6 +51,11 @@ export class SearchBarComponent implements OnInit {
       await this.historyService.addHistory(url); // await : we need to be sure that data has been send successfully
       // get history from serv
       this.historyService.updateHistory();
+
+      // save lastId
+      await this.historyService.getLastHistory();
+      console.log('this.serv1Service.currentVideoId :');
+      console.log(this.serv1Service.currentVideoId);
     }
 
     else {

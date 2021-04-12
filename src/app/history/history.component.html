@@ -6,8 +6,9 @@
   <button
     class="list-group-item list-group-item-action"
     *ngFor="let h of serv1Service.history.reverse()"
-    [class]="h.url == serv1Service.currentVideoUrl ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'"
+    [class]="h._id == serv1Service.currentVideoId ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'"
     [textContent]="h.url"
+    [id]="h._id"
     (click)="onItem($event)"
     style="font-size: small"
   ></button>

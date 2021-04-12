@@ -20,7 +20,10 @@ export class HistoryComponent implements OnInit {
       this.deselectAllItems();
       event.target.classList.add('active');
       this.serv1Service.selectedUrl = event.target.textContent;
+      // save last url
       this.serv1Service.currentVideoUrl = this.serv1Service.selectedUrl;
+      // save last Id
+      this.serv1Service.currentVideoId = event.target.id;
     }
 
     console.log(event.target.textContent);
