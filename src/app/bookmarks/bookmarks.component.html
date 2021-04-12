@@ -5,10 +5,10 @@
         Add to Bookmarks <i class="fa fa-plus" aria-hidden="true"></i>
 </button>
 <button class="btn bg-white" style="font-size: medium" (click)="onSeeBookMarks()" [innerHTML]="valueButton">Show Bookmarks</button>
-<div style="background-color: white; margin-top: 10px; border-radius: 5px; box-shadow: 5px 5px 5px #2f2f2f" [hidden]="isHiddenLabel">
+<div style="background-color: white; margin-top: 10px; border-radius: 5px;" [style.visibility]="isHiddenLabel">
   <label id="bookmarkMsgLabel" style="font-weight: bolder; display: block;"></label>
 </div>
-<div class="list-group" id="list" style="height: 480px; margin-top: 10px; overflow: scroll;" [hidden]="isHidden">
+<div class="list-group" id="list" style="height: 420px; margin-top: 10px; overflow: scroll;" [hidden]="isHidden">
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>-->
   <!-- *** SERVER *** -->

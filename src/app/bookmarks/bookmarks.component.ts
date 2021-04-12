@@ -11,7 +11,8 @@ import {BookmarkModel} from '../models/bookmark.model';
 export class BookmarksComponent implements OnInit {
   isHidden = true;
   valueButton = '<i class="fa fa-eye" aria-hidden="true"></i>';
-  isHiddenLabel = true;
+  isHiddenLabel = 'hidden';
+
 
   constructor(public serv1Service: Serv1Service, private bookmarkService: BookmarkService) {}
 
@@ -35,10 +36,10 @@ export class BookmarksComponent implements OnInit {
     }
 
 
-    this.isHiddenLabel = false;
+    this.isHiddenLabel = 'visible';
     setTimeout(
       () => {
-        this.isHiddenLabel = true;
+        this.isHiddenLabel = 'hidden';
       }, 3000
     );
   }
@@ -70,6 +71,8 @@ export class BookmarksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // set the sucess message (the error message works too) to let the element take the necessary place in the page
+    this.setLabel('The URL has been added to your Bookmarks', '#5de553');
   }
 
 }

@@ -17,6 +17,8 @@ export class SearchBarComponent implements OnInit {
 
   public searchContent;
 
+  isHiddenLabel = 'hidden';
+
   constructor(private serv1Service: Serv1Service, private historyService: HistoryService) {
     this.searchContent = null;
   }
@@ -47,8 +49,6 @@ export class SearchBarComponent implements OnInit {
       await this.historyService.addHistory(url); // await : we need to be sure that data has been send successfully
       // get history from serv
       this.historyService.updateHistory();
-
-      this.setLabel('');
     }
 
     else {
@@ -64,24 +64,12 @@ export class SearchBarComponent implements OnInit {
    * function called by video-view : reset Textbox & display URL error message
    */
   urlNotFound(): void{
-    this.setLabel('URL Not found');
-    this.resetInput();
-  }
-
-  /**
-   * Set text property of the label
-   * @param msg message to display
-   */
-  setLabel(msg): void{
-    document.getElementById('label').innerText = msg;
-  }
-
-  /**
-   * Empty the textBox
-   */
-  resetInput(): void{
-    console.log('resetInput()');
-    this.searchContent = '';
+    this.isHiddenLabel = 'visible';
+    setTimeout(
+      () => {
+        this.isHiddenLabel = 'hidden';
+      }, 3000
+    );
   }
 
   ngOnInit(): void {

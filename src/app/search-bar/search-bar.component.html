@@ -7,4 +7,4 @@
     <button class="btn btn-success"  (click)="onSearch()">Search <i class="fa fa-search" aria-hidden="true"></i></button>
   </div>
 </div>
-<label id="label" style="color: #e55353; font-weight: bold"></label>
+<label id="label" style="color: #e55353; font-weight: bold;" [style.visibility]="isHiddenLabel">URL Not found</label>
