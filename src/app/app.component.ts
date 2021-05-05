@@ -2,17 +2,30 @@ import {Component, OnInit} from '@angular/core';
 import {Serv1Service} from './services/serv1.service';
 import {HistoryService} from './services/history.service';
 import {BookmarkService} from './services/bookmark.service';
+import {Apollo} from 'apollo-angular';
+import {gql} from '@apollo/client/core';
+
+const GET_HISTORY =  gql`
+  query GetHistory {
+    history {
+      _id,
+      url
+    }
+  }
+`;
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent implements OnInit{
 
   isHiddenLabel = true;
-  constructor(public serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService) {
-  }
+  constructor(public serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService,  private apollo: Apollo) {}
 
   async ngOnInit(): Promise<void> {
     // *** LOCAL ***
@@ -24,6 +37,18 @@ export class AppComponent implements OnInit{
 
     // *** SERVER ***
     this.historyService.updateHistory();
+    // console.log('debut');
+    // this
+    //   .apollo
+    //   .watchQuery<any>({
+    //     query: GET_HISTORY})
+    //   .valueChanges.subscribe(({ data, loading }) => {
+    //   // this.loading = loading;
+    //
+    //   this.serv1Service.history = data.history;
+    //   console.log('data.history');
+    //   console.log(data.history);
+    // });
 
 
     // *** LOCAL ***

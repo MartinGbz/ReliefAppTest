@@ -10,6 +10,7 @@ import { VideoViewComponent } from './video-view/video-view.component';
 
 import { Serv1Service } from './services/serv1.service';
 import {HttpClientModule} from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GraphQLModule
   ],
   providers: [Serv1Service],
   bootstrap: [AppComponent]
