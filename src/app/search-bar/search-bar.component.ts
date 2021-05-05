@@ -51,6 +51,8 @@ export class SearchBarComponent implements OnInit {
 
       // save lastId
       await this.historyService.getLastHistory();
+      console.log('this.serv1Service.currentVideoId:');
+      console.log(this.serv1Service.currentVideoId);
     }
 
     else {

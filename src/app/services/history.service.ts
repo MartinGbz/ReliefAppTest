@@ -16,9 +16,33 @@ const GET_HISTORY =  gql`
   }
 `;
 
-// interface Reponse{
-//   history: HistoryModel[];
-// }
+const GET_LAST_HISTORY =  gql`
+  query LastHistory {
+    lastHistory {
+      _id,
+      url
+    }
+  }
+`;
+
+const ADD_HISTORY =  gql`
+  mutation AddHistory($_url: String!) {
+    addHistory(url:$_url){
+      _id
+      url
+    }
+  }
+`;
+
+interface HistoryGetReponse{
+  loading: boolean;
+  history: HistoryModel[];
+}
+
+interface LastHistoryReponse{
+  loading: boolean;
+  lastHistory: HistoryModel;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +51,8 @@ const GET_HISTORY =  gql`
 export class HistoryService {
 
   constructor(private http: HttpClient, private serv1Service: Serv1Service, private apollo: Apollo) {}
+
+  history: HistoryModel[] = [];
 
   // historyGet: Observable<HistoryModel[]>;
 
@@ -52,13 +78,19 @@ export class HistoryService {
   updateHistory(): void {
     this
       .apollo
-      .watchQuery<any>({
+      .watchQuery<HistoryGetReponse>({
       query: GET_HISTORY})
-      .valueChanges.subscribe(({ data, loading }) => {
+      .valueChanges.subscribe(({ data }) => {
       // this.loading = loading;
-      this.serv1Service.history = data.history;
+      // var historyTemp:HistoryModel[] = new Array();
+      // let historyTemp = new Array();
+      // historyTemp = data.history;
+      // historyTemp.forEach(function(v){delete v.typename});
       console.log('data.history');
       console.log(data.history);
+      // console.log(historyTemp);
+      this.serv1Service.history = data.history;
+      console.log(this.serv1Service.history);
       });
   }
 
@@ -79,6 +111,25 @@ export class HistoryService {
    * Update the History array which contains all the history
    */
    getLastHistory(): any {
+     // GRAPHQL
+    this
+      .apollo
+      .watchQuery<LastHistoryReponse>({
+        query: GET_LAST_HISTORY})
+      .valueChanges.subscribe(({ data }) => {
+        console.log('1data');
+        console.log(data);
+        console.log(data.lastHistory.url);
+        // this.serv1Service.currentVideoId = data.history[0]._id;
+        this.serv1Service.currentVideoId = data.lastHistory.url;
+        console.log('2data');
+        console.log(data);
+        console.log('currentVideoId');
+        console.log(data.lastHistory);
+        console.log(this.serv1Service.currentVideoId);
+    });
+
+     // REST
     // this.http.get('http://localhost:8000/api/history/last').subscribe(
     //   (lastHistory: HistoryModel[]) => {
     //     if (lastHistory) {
@@ -93,9 +144,31 @@ export class HistoryService {
 
   /**
    * Add a url to the History
-   * @param url url to add to the history
+   * @param urlIn url to add to the history
    */
-  addHistory(url: HistoryModel): any {
+  // tslint:disable-next-line:variable-name
+  addHistory(_history: HistoryModel): any {
+    // GRAPHQL
+    // this.apollo.mutate({
+    //   mutation: ADD_HISTORY,
+    //   variables: {_url: urlIn}
+    // }).subscribe(({data}) => {console.log('got data', data); },
+    //     (error) => {console.log('there was an error sending the query', error);
+    // });
+      this.apollo.mutate({
+        mutation: ADD_HISTORY,
+        variables: {
+          _url: _history.url
+        }
+      }).subscribe(({ data }) => {
+        console.log('got data', data);
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
+
+      console.log('_history.url');
+      console.log(_history.url);
+    // REST
     // return new Promise((resolve, reject) => {
     //   this.http.post('http://localhost:8000/api/history', url).subscribe(
     //     (response) => {
