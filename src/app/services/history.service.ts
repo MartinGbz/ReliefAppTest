@@ -63,7 +63,8 @@ export class HistoryService {
       query: GET_HISTORY})
       .valueChanges.subscribe(({ data }) => {
       this.serv1Service.history = JSON.parse(JSON.stringify(data.history));
-      // console.log(this.serv1Service.history);
+      console.log('update:');
+      console.log(this.serv1Service.history);
       });
 
     // REST
@@ -116,13 +117,25 @@ export class HistoryService {
         mutation: ADD_HISTORY,
         variables: {
           _url: _history.url
-        }
+        },
+        refetchQueries: [{
+          query: GET_HISTORY
+        }]
       }).subscribe(({ data }) => {
         // console.log('got data', data);
-        this.updateHistory();
+        // this.updateHistory();
+        console.log('added');
       }, (error) => {
         console.log('there was an error sending the query', error);
       });
+
+      // this.apollo.client.writeQuery({
+      //   query: ADD_HISTORY,
+      //   data: _history,
+      //   variables: {
+      //     _url: _history.url
+      //   }
+      // });
 
     // REST
     // return new Promise((resolve, reject) => {

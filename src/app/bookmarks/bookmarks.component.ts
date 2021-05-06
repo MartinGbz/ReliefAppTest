@@ -103,7 +103,6 @@ export class BookmarksComponent implements OnInit {
     if (list.hasChildNodes()) {
       for (let i = 0; i < list.childElementCount; i++){
         list.children[i].classList.remove('active');
-        console.log(list.childElementCount);
       }
     }
   }

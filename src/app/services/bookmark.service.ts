@@ -86,7 +86,10 @@ export class BookmarkService {
       mutation: ADD_BOOKMARKS,
       variables: {
         _url: _bookmarks.url
-      }
+      },
+      refetchQueries: [{
+        query: GET_BOOKMARKS
+      }]
     }).subscribe(({ data }) => {
       // console.log('got data', data);
       this.updateBookmarks();
@@ -117,7 +120,10 @@ export class BookmarkService {
       mutation: REMOVE_BOOKMARK,
       variables: {
         id: _bookmarkId
-      }
+      },
+      refetchQueries: [{
+        query: GET_BOOKMARKS
+      }]
     }).subscribe(({ data }) => {
       // console.log('got data', data);
       this.updateBookmarks();
