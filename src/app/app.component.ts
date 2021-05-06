@@ -25,7 +25,11 @@ const GET_HISTORY =  gql`
 export class AppComponent implements OnInit{
 
   isHiddenLabel = true;
-  constructor(public serv1Service: Serv1Service, private historyService: HistoryService, private bookmarkService: BookmarkService,  private apollo: Apollo) {}
+
+  constructor(public serv1Service: Serv1Service,
+              private historyService: HistoryService,
+              private bookmarkService: BookmarkService,
+              private apollo: Apollo) {}
 
   async ngOnInit(): Promise<void> {
     // *** LOCAL ***

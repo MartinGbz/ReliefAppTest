@@ -129,14 +129,6 @@ export class HistoryService {
         console.log('there was an error sending the query', error);
       });
 
-      // this.apollo.client.writeQuery({
-      //   query: ADD_HISTORY,
-      //   data: _history,
-      //   variables: {
-      //     _url: _history.url
-      //   }
-      // });
-
     // REST
     // return new Promise((resolve, reject) => {
     //   this.http.post('http://localhost:8000/api/history', url).subscribe(
