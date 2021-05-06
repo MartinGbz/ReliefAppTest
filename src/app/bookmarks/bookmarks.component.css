@@ -25,6 +25,7 @@
 #bookmarkMsgLabel{
   font-weight: bolder;
   display: block;
+  font-size: small;
 }
 
 #listBookmarks{

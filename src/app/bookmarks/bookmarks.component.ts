@@ -78,8 +78,13 @@ export class BookmarksComponent implements OnInit {
   }
 
   removeBookmark(): void {
-    this.bookmarkService.removeBookmark(this.serv1Service.currentBookmarkId);
-    console.log('test');
+    if (this.serv1Service.currentBookmarkId != null) {
+      this.bookmarkService.removeBookmark(this.serv1Service.currentBookmarkId);
+    }
+    else {
+      this.setLabel('Error : You must choose a bookmark to remove it from the bookmarks', '#fd614f');
+      this.displayLabel();
+    }
   }
 
   onItem(event): void {
