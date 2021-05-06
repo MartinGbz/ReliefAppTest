@@ -108,7 +108,7 @@ export class BookmarkService {
 
   /**
    * Add a url to the bookmarks
-   * @param bookmark bookmark to add to bookmarks
+   * @param bookmark bookmark to remove to bookmarks
    */
   // tslint:disable-next-line:variable-name
   removeBookmark(_bookmarkId: string): any {

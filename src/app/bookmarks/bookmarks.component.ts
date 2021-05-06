@@ -83,10 +83,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   onItem(event): void {
-    if (event.target.classList.contains('active')) {
-      this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
-    }
-    else {
+    if (!(event.target.classList.contains('active'))){
       this.deselectAllItems();
       event.target.classList.add('active');
       this.serv1Service.currentBookmarkId = event.target.id;
@@ -94,8 +91,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   /**
-   * deselect all history URLs and update selectedUrl & oldSelectedUrl
-   * called also by search-bar
+   * deselect all bookmarks
    */
   deselectAllItems(): void{
     const list = document.getElementById('listBookmarks');
@@ -105,7 +101,5 @@ export class BookmarksComponent implements OnInit {
         console.log(list.childElementCount);
       }
     }
-    this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
-    this.serv1Service.selectedUrl = null;
   }
 }
