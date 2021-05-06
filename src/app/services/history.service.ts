@@ -59,53 +59,29 @@ export class HistoryService {
   /**
    * Update the History array which contains all the history
    */
-  // updateHistory(): void {
-  //   this.historyGet = this.apollo.watchQuery<any>({
-  //     query: GET_HISTORY})
-  //     .valueChanges.pipe(map(result => result.data.history));
-  //   this.serv1Service.history = this.historyGet;
-  //   console.log('this.historyGet');
-  //   console.log(this.historyGet);
-  // }
-
-  // updateHistory(): void {
-  //   this.historyGet$ = this.apollo.watchQuery<any>({
-  //       query: GET_HISTORY})
-  //     .valueChanges.pipe(map(result => result.data.historyGet));
-  //   this.serv1Service.history = this.historyGet$;
-  // }
-
   updateHistory(): void {
+    // GRAPHQL
     this
       .apollo
       .watchQuery<HistoryGetReponse>({
       query: GET_HISTORY})
       .valueChanges.subscribe(({ data }) => {
-      // this.loading = loading;
-      // var historyTemp:HistoryModel[] = new Array();
-      // let historyTemp = new Array();
-      // historyTemp = data.history;
-      // historyTemp.forEach(function(v){delete v.typename});
-      console.log('data.history');
-      console.log(data.history);
-      // console.log(historyTemp);
       this.serv1Service.history = data.history;
       console.log(this.serv1Service.history);
       });
-  }
 
-  // updateHistory(): void {
-  //   this.http.get('http://localhost:8000/api/history').subscribe(
-  //     (history: HistoryModel[]) => {
-  //       if (history) {
-  //         this.serv1Service.history = history;
-  //       }
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
+    // REST
+    // this.http.get('http://localhost:8000/api/history').subscribe(
+    //   (history: HistoryModel[]) => {
+    //     if (history) {
+    //       this.serv1Service.history = history;
+    //     }
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+  }
 
   /**
    * Update the History array which contains all the history
@@ -117,19 +93,10 @@ export class HistoryService {
       .watchQuery<LastHistoryReponse>({
         query: GET_LAST_HISTORY})
       .valueChanges.subscribe(({ data }) => {
-        console.log('1data');
-        console.log(data);
-        console.log(data.lastHistory.url);
-        // this.serv1Service.currentVideoId = data.history[0]._id;
         this.serv1Service.currentVideoId = data.lastHistory.url;
-        console.log('2data');
-        console.log(data);
-        console.log('currentVideoId');
-        console.log(data.lastHistory);
-        console.log(this.serv1Service.currentVideoId);
     });
 
-     // REST
+    // REST
     // this.http.get('http://localhost:8000/api/history/last').subscribe(
     //   (lastHistory: HistoryModel[]) => {
     //     if (lastHistory) {
@@ -149,12 +116,6 @@ export class HistoryService {
   // tslint:disable-next-line:variable-name
   addHistory(_history: HistoryModel): any {
     // GRAPHQL
-    // this.apollo.mutate({
-    //   mutation: ADD_HISTORY,
-    //   variables: {_url: urlIn}
-    // }).subscribe(({data}) => {console.log('got data', data); },
-    //     (error) => {console.log('there was an error sending the query', error);
-    // });
       this.apollo.mutate({
         mutation: ADD_HISTORY,
         variables: {
@@ -166,8 +127,6 @@ export class HistoryService {
         console.log('there was an error sending the query', error);
       });
 
-      console.log('_history.url');
-      console.log(_history.url);
     // REST
     // return new Promise((resolve, reject) => {
     //   this.http.post('http://localhost:8000/api/history', url).subscribe(
