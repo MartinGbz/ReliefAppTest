@@ -47,7 +47,8 @@ export class BookmarkService {
         query: GET_BOOKMARKS})
       .valueChanges.subscribe(({ data }) => {
       this.serv1Service.bookmarks = JSON.parse(JSON.stringify(data.bookmarks));
-      console.log(this.serv1Service.bookmarks);
+      this.serv1Service.nbBookmark = data.bookmarks.length;
+      // console.log(this.serv1Service.bookmarks);
     });
     // REST
     // this.http.get('http://localhost:8000/api/bookmarks').subscribe(
@@ -69,6 +70,7 @@ export class BookmarkService {
    * Add a url to the bookmarks
    * @param bookmark bookmark to add to bookmarks
    */
+  // tslint:disable-next-line:variable-name
   addBookmarks(_bookmarks: BookmarkModel): any {
     // GRAPHQL
     this.apollo.mutate({
@@ -77,7 +79,7 @@ export class BookmarkService {
         _url: _bookmarks.url
       }
     }).subscribe(({ data }) => {
-      console.log('got data', data);
+      // console.log('got data', data);
       this.updateBookmarks();
     }, (error) => {
       console.log('there was an error sending the query', error);

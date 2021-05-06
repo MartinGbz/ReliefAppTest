@@ -26,7 +26,7 @@ const GET_LAST_HISTORY =  gql`
 const ADD_HISTORY =  gql`
   mutation AddHistory($_url: String!) {
     addHistory(url:$_url){
-      _id
+      _id,
       url
     }
   }
@@ -63,8 +63,7 @@ export class HistoryService {
       query: GET_HISTORY})
       .valueChanges.subscribe(({ data }) => {
       this.serv1Service.history = JSON.parse(JSON.stringify(data.history));
-      console.log('updateHistory()');
-      console.log(this.serv1Service.history);
+      // console.log(this.serv1Service.history);
       });
 
     // REST
@@ -119,7 +118,7 @@ export class HistoryService {
           _url: _history.url
         }
       }).subscribe(({ data }) => {
-        console.log('got data', data);
+        // console.log('got data', data);
         this.updateHistory();
       }, (error) => {
         console.log('there was an error sending the query', error);
