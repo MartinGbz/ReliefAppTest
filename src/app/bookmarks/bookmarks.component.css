@@ -12,6 +12,7 @@
 }
 
 #buttonShowBookmarks{
+  margin-right: 10px;
   font-size: medium;
 }
 
@@ -26,13 +27,13 @@
   display: block;
 }
 
-#list{
+#listBookmarks{
   height: 420px;
   margin-top: 10px;
   overflow: scroll;
 }
 
-#buttonBookmark{
+.buttonBookmark{
   font-size: small;
   display: flex
 }

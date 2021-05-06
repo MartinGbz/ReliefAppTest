@@ -77,4 +77,35 @@ export class BookmarksComponent implements OnInit {
     this.setLabel('The URL has been added to your Bookmarks', '#5de553');
   }
 
+  removeBookmark(): void {
+    this.bookmarkService.removeBookmark(this.serv1Service.currentBookmarkId);
+    console.log('test');
+  }
+
+  onItem(event): void {
+    if (event.target.classList.contains('active')) {
+      this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
+    }
+    else {
+      this.deselectAllItems();
+      event.target.classList.add('active');
+      this.serv1Service.currentBookmarkId = event.target.id;
+    }
+  }
+
+  /**
+   * deselect all history URLs and update selectedUrl & oldSelectedUrl
+   * called also by search-bar
+   */
+  deselectAllItems(): void{
+    const list = document.getElementById('listBookmarks');
+    if (list.hasChildNodes()) {
+      for (let i = 0; i < list.childElementCount; i++){
+        list.children[i].classList.remove('active');
+        console.log(list.childElementCount);
+      }
+    }
+    this.serv1Service.oldSelectedUrl = this.serv1Service.selectedUrl;
+    this.serv1Service.selectedUrl = null;
+  }
 }

@@ -1,20 +1,26 @@
 <h3 id="titleBookmarks"><i class="fa fa-bookmark"></i> Bookmarks</h3>
+<button class="btn bg-white" id="buttonShowBookmarks" (click)="showHideBookMarks()" [innerHTML]="valueButton"></button>
 <button class="btn bg-white"
         id="buttonAddBookmark"
         (click)="onAddBookMarks()">
-        Add to Bookmarks <i class="fa fa-plus" aria-hidden="true"></i>
+        Add <i class="fa fa-plus" aria-hidden="true" style="color: #63aa99"></i>
 </button>
-<button class="btn bg-white" id="buttonShowBookmarks" (click)="showHideBookMarks()" [innerHTML]="valueButton">Show Bookmarks</button>
+<button class="btn bg-white"
+        id="buttonRemoveBookmark"
+        (click)="removeBookmark()">
+        Delete <i class="fa fa-times" aria-hidden="true" style="color: #e55353"></i>
+</button>
 <div id="divBookmarkMsgLabel" [style.visibility]="isHiddenLabel">
   <label id="bookmarkMsgLabel"></label>
 </div>
-<div class="list-group" id="list" [hidden]="isHiddenBookmarks">
+<div class="list-group" id="listBookmarks" [hidden]="isHiddenBookmarks">
   <!-- *** LOCAL *** -->
   <!--<button class="list-group-item list-group-item-action" *ngFor="let b of bookmarks.reverse()" [textContent]="b"></button>-->
   <!-- *** SERVER *** -->
-  <button class="list-group-item list-group-item-action"
-          id="buttonBookmark"
+  <button class="list-group-item list-group-item-action buttonBookmark"
           *ngFor="let b of serv1Service.bookmarks.reverse()"
           [textContent]="b.url"
+          [id]="b._id"
+          (click)="onItem($event)"
   ></button>
 </div>

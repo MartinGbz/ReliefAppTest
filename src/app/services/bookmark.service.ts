@@ -23,6 +23,15 @@ const ADD_BOOKMARKS =  gql`
   }
 `;
 
+const REMOVE_BOOKMARK =  gql`
+  mutation RemoveBookmark($id: String!) {
+    removeBookmark(_id:$id){
+      _id
+      url
+    }
+  }
+`;
+
 interface BookmarksGetReponse{
   loading: boolean;
   bookmarks: BookmarkModel[];
@@ -97,4 +106,23 @@ export class BookmarkService {
     // });
   }
 
+  /**
+   * Add a url to the bookmarks
+   * @param bookmark bookmark to add to bookmarks
+   */
+  // tslint:disable-next-line:variable-name
+  removeBookmark(_bookmarkId: string): any {
+    // GRAPHQL
+    this.apollo.mutate({
+      mutation: REMOVE_BOOKMARK,
+      variables: {
+        id: _bookmarkId
+      }
+    }).subscribe(({ data }) => {
+      // console.log('got data', data);
+      this.updateBookmarks();
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
+  }
 }

@@ -22,6 +22,8 @@ export class Serv1Service{
   currentVideoUrl = null;
   currentVideoId = null;
 
+  currentBookmarkId = null;
+
 
   /**
    * Get id of Youtube video
