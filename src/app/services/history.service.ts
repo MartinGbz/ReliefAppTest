@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import {Serv1Service} from './serv1.service';
 import {Apollo} from 'apollo-angular';
 import {gql} from '@apollo/client/core';
-import {Observable} from '@apollo/client/utilities/observables/Observable';
-import {map} from 'rxjs/operators';
 
 const GET_HISTORY =  gql`
   query GetHistory {
@@ -54,8 +52,6 @@ export class HistoryService {
 
   history: HistoryModel[] = [];
 
-  // historyGet: Observable<HistoryModel[]>;
-
   /**
    * Update the History array which contains all the history
    */
@@ -66,7 +62,8 @@ export class HistoryService {
       .watchQuery<HistoryGetReponse>({
       query: GET_HISTORY})
       .valueChanges.subscribe(({ data }) => {
-      this.serv1Service.history = data.history;
+      this.serv1Service.history = JSON.parse(JSON.stringify(data.history));
+      console.log('updateHistory()');
       console.log(this.serv1Service.history);
       });
 
@@ -123,6 +120,7 @@ export class HistoryService {
         }
       }).subscribe(({ data }) => {
         console.log('got data', data);
+        this.updateHistory();
       }, (error) => {
         console.log('there was an error sending the query', error);
       });

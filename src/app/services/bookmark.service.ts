@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import {Serv1Service} from './serv1.service';
 import {BookmarkModel} from '../models/bookmark.model';
 import {gql} from '@apollo/client/core';
-import {HistoryModel} from '../models/history.model';
 import {Apollo} from 'apollo-angular';
 
 const GET_BOOKMARKS =  gql`
@@ -47,7 +46,7 @@ export class BookmarkService {
       .watchQuery<BookmarksGetReponse>({
         query: GET_BOOKMARKS})
       .valueChanges.subscribe(({ data }) => {
-      this.serv1Service.bookmarks = data.bookmarks;
+      this.serv1Service.bookmarks = JSON.parse(JSON.stringify(data.bookmarks));
       console.log(this.serv1Service.bookmarks);
     });
     // REST
@@ -79,6 +78,7 @@ export class BookmarkService {
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);
+      this.updateBookmarks();
     }, (error) => {
       console.log('there was an error sending the query', error);
     });

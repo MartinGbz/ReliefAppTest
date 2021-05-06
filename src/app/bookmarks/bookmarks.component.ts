@@ -25,7 +25,7 @@ export class BookmarksComponent implements OnInit {
     // *** SERVER ***
     if (this.serv1Service.currentVideoUrl !== null){
       await this.bookmarkService.addBookmarks(new BookmarkModel(this.serv1Service.currentVideoUrl));
-      this.bookmarkService.updateBookmarks();
+      // this.bookmarkService.updateBookmarks();
       this.setLabel('The URL has been added to your Bookmarks', '#5de553');
     }
     else {
