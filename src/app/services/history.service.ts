@@ -32,12 +32,12 @@ const ADD_HISTORY =  gql`
   }
 `;
 
-interface HistoryGetReponse{
+interface HistoryGetResponse {
   loading: boolean;
   history: HistoryModel[];
 }
 
-interface LastHistoryReponse{
+interface LastHistoryResponse {
   loading: boolean;
   lastHistory: HistoryModel;
 }
@@ -59,7 +59,7 @@ export class HistoryService {
     // GRAPHQL
     this
       .apollo
-      .watchQuery<HistoryGetReponse>({
+      .watchQuery<HistoryGetResponse>({
       query: GET_HISTORY})
       .valueChanges.subscribe(({ data }) => {
       this.serv1Service.history = JSON.parse(JSON.stringify(data.history));
@@ -87,7 +87,7 @@ export class HistoryService {
      // GRAPHQL
     this
       .apollo
-      .watchQuery<LastHistoryReponse>({
+      .watchQuery<LastHistoryResponse>({
         query: GET_LAST_HISTORY})
       .valueChanges.subscribe(({ data }) => {
         this.serv1Service.currentVideoId = data.lastHistory.url;

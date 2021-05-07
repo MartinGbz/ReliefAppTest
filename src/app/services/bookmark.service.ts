@@ -32,7 +32,7 @@ const REMOVE_BOOKMARK =  gql`
   }
 `;
 
-interface BookmarksGetReponse{
+interface BookmarksGetResponse {
   loading: boolean;
   bookmarks: BookmarkModel[];
 }
@@ -52,7 +52,7 @@ export class BookmarkService {
     // GRAPHQL
     this
       .apollo
-      .watchQuery<BookmarksGetReponse>({
+      .watchQuery<BookmarksGetResponse>({
         query: GET_BOOKMARKS})
       .valueChanges.subscribe(({ data }) => {
       this.serv1Service.bookmarks = JSON.parse(JSON.stringify(data.bookmarks));
@@ -92,7 +92,7 @@ export class BookmarkService {
       }]
     }).subscribe(({ data }) => {
       // console.log('got data', data);
-      this.updateBookmarks();
+      // this.updateBookmarks();
     }, (error) => {
       console.log('there was an error sending the query', error);
     });
